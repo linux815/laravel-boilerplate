@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Orchid\Filters\Filterable;
+use Orchid\Screen\AsSource;
 
 /**
  *
@@ -19,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property string $title
  * @property string $content
  * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property string|null $deleted_at
  * @method Builder|Article newQuery()
  * @method static Builder|Article newModelQuery()
@@ -36,13 +39,18 @@ class Article extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use AsSource;
+    use Filterable;
 
-    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'category_id',
         'title',
         'content',
+    ];
+
+    protected $allowedSorts = [
+        'created_at',
     ];
 
     public function user(): BelongsTo
