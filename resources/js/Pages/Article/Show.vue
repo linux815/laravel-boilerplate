@@ -15,9 +15,9 @@ defineProps(['article']);
                             {{ article.title }}
                         </h1>
 
-                        <p class="mt-6 text-gray-500 leading-relaxed">
-                            {{ article.content }}
-                        </p>
+                        <div class="mt-6 text-gray-500 leading-relaxed">
+                            <p v-html="article.content" />
+                        </div>
                     </div>
 
                     <a class="inline-flex items-center text-xl font-semibold text-orange-900 hover:text-gray-900" :href="route('articles')">

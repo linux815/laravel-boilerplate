@@ -58,7 +58,7 @@ export default {
                                 <span class="block text-gray-400 mb-1"> {{ new Date(article.created_at).toLocaleString() }} </span>
                                 <span class="block text-gray-400 mb-1"> Category: {{ article.category.name }} </span>
                                 <p class="text-2xl font-semibold text-gray-900">{{ article.title }}</p>
-                                <p class="text-2xl font-semibold text-gray-500">{{ article.content }}</p>
+                                <p class="text-2xl font-semibold text-gray-500" v-html="article.content" />
                             </div>
                         </div>
                         <div class="w-full lg:w-auto px-4 ml-auto text-right">
