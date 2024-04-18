@@ -26,7 +26,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     public function findById(int $id): Builder | Model | null
     {
-        return $this->article->with('category')->newQuery()->find($id);
+        return $this->article->with('category', 'comments')->newQuery()->find($id);
     }
 
     public function create(ArticleDTO $articleDTO): Model

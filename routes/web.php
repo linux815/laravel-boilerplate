@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +16,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('articles');
 });
 
 Route::middleware([
@@ -29,6 +24,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
-    Route::get('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+
+    Route::resource('comments', CommentController::class)
+        ->only(['index', 'store']);
 });

@@ -42,18 +42,10 @@ export default {
 <template>
     <div>
         <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-            <div class="max-w-2xl mx-auto mb-15 text-center">
-                <h1 class="font-heading text-5xl xs:text-6xl md:text-7xl font-bold">
-                    <span class="font-serif">Articles</span>
-                </h1>
-            </div>
-            <div class="max-w-5xl mx-auto">
-                <div class="py-12 border-t-2 border-gray-100" v-for="article in localArticles" :key="article.id">
+            <div class="max-w-2xl mx-auto">
+                <div class="py-8 border-t-2 border-gray-100" v-for="article in localArticles" :key="article.id">
                     <div class="flex flex-wrap lg:flex-nowrap items-center">
-                        <div class="w-full lg:w-auto px-4 mb-8 lg:mb-0">
-                            <img class="block w-44 h-30" src="saturn-assets/images/blog/image-blog-small-2.png" alt="">
-                        </div>
-                        <div class="w-full lg:w-9/12 px-4 mb-10 lg:mb-0">
+                        <div class="w-full lg:w-9/12 px-4 mb-2 lg:mb-0">
                             <div class="max-w-2xl">
                                 <span class="block text-gray-400 mb-1"> {{ new Date(article.created_at).toLocaleString() }} </span>
                                 <span class="block text-gray-400 mb-1"> Category: {{ article.category.name }} </span>

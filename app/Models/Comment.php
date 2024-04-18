@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Orchid\Filters\Filterable;
+use Orchid\Screen\AsSource;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -20,7 +22,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon $created_at
  * @property string|null $deleted_at
  * @method static Builder|Comment newModelQuery()
- * @method static Builder|Comment newQuery()
+ * @method Builder|Comment newQuery()
  * @method static Builder|Comment query()
  * @method static Builder|Comment whereArticleId($value)
  * @method static Builder|Comment whereComment($value)
@@ -39,13 +41,24 @@ class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use AsSource;
+    use Filterable;
 
-    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'article_id',
         'comment',
     ];
+
+    protected $allowedSorts = [
+        'created_at',
+        'update_at'
+    ];
+
+    protected $dates = ['created_at', 'updated_at'];
+
+    protected $with = ['user'];
+
 
     public function article(): BelongsTo
     {

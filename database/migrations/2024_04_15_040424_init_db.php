@@ -35,7 +35,7 @@ return new class extends Migration {
             $table->bigInteger('user_id')->unsigned();
             $table->integer('article_id')->unsigned();
             $table->text('comment');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');

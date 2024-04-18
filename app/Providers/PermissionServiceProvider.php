@@ -24,5 +24,10 @@ class PermissionServiceProvider extends ServiceProvider
             ->addPermission('update-category', 'Update Category')
             ->addPermission('delete-category', 'Delete Category');
         $dashboard->registerPermissions($permissions);
+
+        $permissions = ItemPermission::group('Comment')
+            ->addPermission('update-comment', 'Update Comment')
+            ->addPermission('delete-comment', 'Delete Comment');
+        $dashboard->registerPermissions($permissions);
     }
 }

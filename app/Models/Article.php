@@ -14,7 +14,7 @@ use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -78,6 +78,6 @@ class Article extends Model
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class, 'article_id');
+        return $this->hasMany(Comment::class, 'article_id')->orderBy('created_at', 'desc');
     }
 }

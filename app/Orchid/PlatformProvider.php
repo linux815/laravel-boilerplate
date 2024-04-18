@@ -32,7 +32,7 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             Menu::make('Go to site')
-                ->icon('bs.site')
+                ->icon('bs.house')
                 ->route('articles'),
 
             Menu::make('Articles')
@@ -43,6 +43,10 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Categories')
                 ->icon('bi.journal-bookmark')
                 ->route('platform.category.list'),
+
+            Menu::make('Comments')
+                ->icon('bi.chat')
+                ->route('platform.comment.list'),
 
             Menu::make(__('Users'))
                 ->icon('bs.people')
