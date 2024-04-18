@@ -2,25 +2,22 @@
 
 namespace App\Contracts;
 
-use App\Dto\ArticleDTO;
-use App\Models\Article;
+use App\Dto\CategoryDTO;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;
 
-interface ArticleRepositoryInterface
+interface CategoryRepositoryInterface
 {
-    public const ARTICLES_PER_PAGE = 1;
+    public const CATEGORY_PER_PAGE = 1;
 
     public function findAllPaginated(): CursorPaginator;
 
     public function findById(int $id): Model | Builder | null;
 
-    public function create(ArticleDTO $articleDTO): Model;
+    public function create(CategoryDTO $categoryDTO): Model;
 
-    public function update(int $id, ArticleDTO $articleDTO): bool;
+    public function update(int $id, CategoryDTO $categoryDTO): bool;
 
     public function delete(int $id): void;
-
-    public function getCountsByCategoryId(int $categoryId): int;
 }

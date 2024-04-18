@@ -19,8 +19,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         return $this->article->with('category')
             ->newQuery()
-            ->latest()
             ->filters()
+            ->latest()
             ->cursorPaginate(self::ARTICLES_PER_PAGE);
     }
 
@@ -49,5 +49,10 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         $article = $this->findById($id);
         $article?->delete();
+    }
+
+    public function getCountsByCategoryId(int $categoryId): int
+    {
+        return $this->article->newQuery()->where('category_id', $categoryId)->count();
     }
 }

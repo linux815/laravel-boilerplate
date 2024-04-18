@@ -36,6 +36,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title('Navigation')
                 ->route('platform.article.list'),
 
+            Menu::make('Categories')
+                ->icon('bi.journal-bookmark')
+                ->route('platform.category.list'),
+
             Menu::make(__('Users'))
                 ->icon('bs.people')
                 ->route('platform.systems.users')

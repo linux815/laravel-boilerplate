@@ -49,4 +49,9 @@ class ArticleService implements ArticleServiceInterface
     {
         $this->articleRepository->delete($id);
     }
+
+    public function getCountsByCategoryId(int $categoryId): int
+    {
+        return $this->articleRepository->getCountsByCategoryId($categoryId);
+    }
 }

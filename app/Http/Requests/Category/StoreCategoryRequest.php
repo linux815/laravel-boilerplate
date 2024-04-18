@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Category;
 
-use App\Models\Article;
+use App\Dto\CategoryDTO;
+use App\Models\Category;
 use Gate;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteArticleRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Gate::allows('delete-article', Article::class);
+        return Gate::allows('create-category', Category::class);
+
     }
 
     /**
@@ -24,6 +26,15 @@ class DeleteArticleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'category.name' => 'string|required|max:255',
+        ];
+    }
+
+    public function toDTO(): CategoryDTO
+    {
+        return new CategoryDTO(
+            $this->input('category.name'),
+        );
     }
 }

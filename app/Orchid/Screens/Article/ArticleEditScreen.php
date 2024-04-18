@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Article;
 
 use Alert;
 use App\Contracts\ArticleServiceInterface;
-use App\Http\Requests\DeleteArticleRequest;
-use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
+use App\Http\Requests\Article\DeleteArticleRequest;
+use App\Http\Requests\Article\StoreArticleRequest;
+use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;

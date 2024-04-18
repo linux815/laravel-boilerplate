@@ -17,7 +17,12 @@ class PermissionServiceProvider extends ServiceProvider
             ->addPermission('create-article', 'Create Article')
             ->addPermission('update-article', 'Update Article')
             ->addPermission('delete-article', 'Delete Article');
+        $dashboard->registerPermissions($permissions);
 
+        $permissions = ItemPermission::group('Category')
+            ->addPermission('create-category', 'Create Category')
+            ->addPermission('update-category', 'Update Category')
+            ->addPermission('delete-category', 'Delete Category');
         $dashboard->registerPermissions($permissions);
     }
 }

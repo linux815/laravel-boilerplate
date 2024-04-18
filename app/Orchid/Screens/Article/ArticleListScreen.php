@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Article;
 
 use App\Contracts\ArticleServiceInterface;
 use App\Orchid\Layouts\ArticleListLayout;
