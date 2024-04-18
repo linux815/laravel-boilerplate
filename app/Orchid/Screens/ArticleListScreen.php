@@ -2,13 +2,19 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Article;
+use App\Contracts\ArticleServiceInterface;
 use App\Orchid\Layouts\ArticleListLayout;
+use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class ArticleListScreen extends Screen
 {
+    public function __construct(private readonly ArticleServiceInterface $articleService)
+    {
+    }
+
     /**
      * Fetch data to be displayed on the screen.
      *
@@ -17,7 +23,7 @@ class ArticleListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'articles' => Article::filters()->paginate()
+            'articles' => $this->articleService->getPaginated(),
         ];
     }
 
@@ -34,7 +40,7 @@ class ArticleListScreen extends Screen
     /**
      * The screen's action buttons.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): iterable
     {
@@ -48,7 +54,7 @@ class ArticleListScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return \Orchid\Screen\Layout[]|string[]
+     * @return Layout[]|string[]
      */
     public function layout(): iterable
     {

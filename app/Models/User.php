@@ -17,6 +17,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User as Authenticatable;
 
 /**
+ * 
  *
  * @property int $id
  * @property string $name

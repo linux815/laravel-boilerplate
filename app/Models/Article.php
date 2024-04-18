@@ -14,6 +14,7 @@ use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 /**
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -33,6 +34,18 @@ use Orchid\Screen\AsSource;
  * @method static Builder|Article whereId($value)
  * @method static Builder|Article whereTitle($value)
  * @method static Builder|Article whereUserId($value)
+ * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @property-read \App\Models\User $user
+ * @method static Builder|Article defaultSort(string $column, string $direction = 'asc')
+ * @method static \Database\Factories\ArticleFactory factory($count = null, $state = [])
+ * @method static Builder|Article filters(?mixed $kit = null, ?\Orchid\Filters\HttpFilter $httpFilter = null)
+ * @method static Builder|Article filtersApply(iterable $filters = [])
+ * @method static Builder|Article filtersApplySelection($class)
+ * @method static Builder|Article onlyTrashed()
+ * @method static Builder|Article withTrashed()
+ * @method static Builder|Article withoutTrashed()
  * @mixin Eloquent
  */
 class Article extends Model

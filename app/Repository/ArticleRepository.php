@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Contracts\ArticleRepositoryInterface;
+use App\Dto\ArticleDTO;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,11 +20,34 @@ class ArticleRepository implements ArticleRepositoryInterface
         return $this->article->with('category')
             ->newQuery()
             ->latest()
+            ->filters()
             ->cursorPaginate(self::ARTICLES_PER_PAGE);
     }
 
     public function findById(int $id): Builder | Model | null
     {
         return $this->article->with('category')->newQuery()->find($id);
+    }
+
+    public function create(ArticleDTO $articleDTO): Model
+    {
+        return $this->article->newQuery()->create($articleDTO->jsonSerialize());
+    }
+
+    public function update(int $id, ArticleDTO $articleDTO): bool
+    {
+        $article = $this->findById($id);
+
+        if ($article === null) {
+            return false;
+        }
+
+        return $article->fill($articleDTO->jsonSerialize())->save();
+    }
+
+    public function delete(int $id): void
+    {
+        $article = $this->findById($id);
+        $article?->delete();
     }
 }

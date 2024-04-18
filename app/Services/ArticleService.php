@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\ArticleRepositoryInterface;
 use App\Contracts\ArticleServiceInterface;
+use App\Dto\ArticleDTO;
 use App\Exceptions\ArticleNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,5 +33,20 @@ class ArticleService implements ArticleServiceInterface
         }
 
         return $article;
+    }
+
+    public function store(ArticleDTO $articleDTO): void
+    {
+        $this->articleRepository->create($articleDTO);
+    }
+
+    public function update(int $id, ArticleDTO $articleDTO): void
+    {
+        $this->articleRepository->update($id, $articleDTO);
+    }
+
+    public function delete(int $id): void
+    {
+        $this->articleRepository->delete($id);
     }
 }

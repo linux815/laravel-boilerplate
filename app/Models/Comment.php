@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -27,6 +28,11 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Comment whereDeletedAt($value)
  * @method static Builder|Comment whereId($value)
  * @method static Builder|Comment whereUserId($value)
+ * @property-read \App\Models\Article $article
+ * @property-read \App\Models\User $user
+ * @method static Builder|Comment onlyTrashed()
+ * @method static Builder|Comment withTrashed()
+ * @method static Builder|Comment withoutTrashed()
  * @mixin Eloquent
  */
 class Comment extends Model

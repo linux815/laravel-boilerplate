@@ -2,10 +2,16 @@
 
 namespace App\Orchid\Screens;
 
+use Alert;
+use App\Contracts\ArticleServiceInterface;
+use App\Http\Requests\DeleteArticleRequest;
+use App\Http\Requests\StoreArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
@@ -13,9 +19,14 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
+
 class ArticleEditScreen extends Screen
 {
     public $article;
+
+    public function __construct(private readonly ArticleServiceInterface $articleService)
+    {
+    }
 
     /**
      * Fetch data to be displayed on the screen.
@@ -57,12 +68,12 @@ class ArticleEditScreen extends Screen
         return [
             Button::make('Create article')
                 ->icon('pencil')
-                ->method('createOrUpdate')
+                ->method('create')
                 ->canSee(!$this->article->exists),
 
             Button::make('Update')
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('update')
                 ->canSee($this->article->exists),
 
             Button::make('Remove')
@@ -76,6 +87,7 @@ class ArticleEditScreen extends Screen
      * Views.
      *
      * @return Layout[]
+     * @throws BindingResolutionException
      */
     public function layout(): array
     {
@@ -101,28 +113,29 @@ class ArticleEditScreen extends Screen
         ];
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function createOrUpdate(Request $request)
+    public function create(StoreArticleRequest $request): RedirectResponse
     {
-        $this->article->fill($request->get('article'))->save();
+        $this->articleService->store($request->toDTO());
 
-        \Alert::info('You have successfully created a article.');
+        Alert::info('You have successfully created a article.');
 
         return redirect()->route('platform.article.list');
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function remove()
+    public function update(UpdateArticleRequest $request): RedirectResponse
     {
-        $this->article->delete();
+        $this->articleService->update($this->article->id, $request->toDTO());
 
-        \Alert::info('You have successfully deleted the article.');
+        Alert::info('You have successfully updated a article.');
+
+        return redirect()->route('platform.article.list');
+    }
+
+    public function remove(DeleteArticleRequest $request): RedirectResponse
+    {
+        $this->articleService->delete($this->article->id);
+
+        Alert::info('You have successfully deleted the article.');
 
         return redirect()->route('platform.article.list');
     }
