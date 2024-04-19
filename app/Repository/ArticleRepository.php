@@ -21,7 +21,11 @@ class ArticleRepository implements ArticleRepositoryInterface
         return $this->article->with('category')
             ->newQuery()
             ->filters()
-            ->latest()
+            ->select([
+                'articles.*',
+                \DB::raw('articles.id as article_id'),
+            ])
+            ->orderByDesc('article_id')
             ->cursorPaginate(self::ARTICLES_PER_PAGE);
     }
 

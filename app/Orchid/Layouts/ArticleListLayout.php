@@ -27,14 +27,14 @@ class ArticleListLayout extends Table
     protected function columns(): iterable
     {
         return [
+            TD::make('id', 'ID')->sort()->render(fn (Article $article) => $article?->article_id),
             TD::make('title', 'Title')
                 ->render(function (Article $article) {
                     return Link::make($article->title)
                         ->route('platform.article.edit', $article);
                 }),
-
-            TD::make('created_at', 'Created')->sort()->render(fn (Article $article) => $article?->created_at->format('Y-m-d H:i:s')),
-            TD::make('updated_at', 'Last edit')->sort()->render(fn (Article $article) => $article->updated_at?->format('Y-m-d H:i:s')),
+            TD::make('created_at', 'Created')->render(fn (Article $article) => $article?->created_at->format('Y-m-d H:i:s')),
+            TD::make('updated_at', 'Last edit')->render(fn (Article $article) => $article->updated_at?->format('Y-m-d H:i:s')),
         ];
     }
 }

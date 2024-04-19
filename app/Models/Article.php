@@ -63,6 +63,7 @@ class Article extends Model
     ];
 
     protected $allowedSorts = [
+        'id',
         'created_at',
     ];
 
