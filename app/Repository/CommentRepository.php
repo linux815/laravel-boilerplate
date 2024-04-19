@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Contracts\CommentRepositoryInterface;
 use App\Dto\CommentDTO;
+use App\Exceptions\CommentNotFoundException;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -38,7 +39,7 @@ class CommentRepository implements CommentRepositoryInterface
         $comment = $this->findById($id);
 
         if ($comment === null) {
-            return false;
+            throw new CommentNotFoundException();
         }
 
         return $comment->fill($commentDTO->jsonSerialize())->save();

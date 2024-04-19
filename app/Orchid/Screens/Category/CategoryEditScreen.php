@@ -86,8 +86,7 @@ class CategoryEditScreen extends Screen
             Layout::rows([
                 Input::make('category.name')
                     ->title('Name')
-                    ->placeholder('Attractive but mysterious title')
-                    ->help('Specify a short descriptive title for this article.'),
+                    ->placeholder('Enter the name of the category'),
             ])
         ];
     }

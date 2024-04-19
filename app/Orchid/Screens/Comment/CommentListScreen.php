@@ -2,12 +2,9 @@
 
 namespace App\Orchid\Screens\Comment;
 
-use App\Contracts\ArticleServiceInterface;
 use App\Contracts\CommentServiceInterface;
-use App\Orchid\Layouts\ArticleListLayout;
 use App\Orchid\Layouts\CommentListLayout;
 use Orchid\Screen\Action;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 

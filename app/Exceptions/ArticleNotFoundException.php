@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
-class ArticleNotFoundException extends Exception
+class ArticleNotFoundException extends CustomException
 {
-    //
+    public function __construct()
+    {
+        parent::__construct('Article not found', 404);
+    }
 }

@@ -9,7 +9,7 @@ use Illuminate\Pagination\CursorPaginator;
 
 interface CommentRepositoryInterface
 {
-    public const COMMENTS_PER_PAGE = 1;
+    public const COMMENTS_PER_PAGE = 5;
 
     public function findAllPaginated(): CursorPaginator;
 

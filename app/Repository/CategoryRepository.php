@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Contracts\CategoryRepositoryInterface;
 use App\Dto\CategoryDTO;
+use App\Exceptions\CategoryNotFoundException;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -38,7 +39,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         $category = $this->findById($id);
 
         if ($category === null) {
-            return false;
+            throw new CategoryNotFoundException();
         }
 
         return $category->fill($categoryDTO->jsonSerialize())->save();

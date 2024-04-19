@@ -95,7 +95,7 @@ class ArticleEditScreen extends Screen
             Layout::rows([
                 Input::make('article.title')
                     ->title('Title')
-                    ->placeholder('Attractive but mysterious title')
+                    ->placeholder('Enter the title of the article')
                     ->help('Specify a short descriptive title for this article.'),
 
                 Relation::make('article.category_id')

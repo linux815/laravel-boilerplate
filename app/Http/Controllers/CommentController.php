@@ -14,13 +14,6 @@ class CommentController extends Controller
     {
     }
 
-    public function index(): Response
-    {
-        return Inertia::render('Comment/Index', [
-            //
-        ]);
-    }
-
     public function store(StoreCommentRequest $request): RedirectResponse
     {
         $this->commentService->store($request->toDTO());

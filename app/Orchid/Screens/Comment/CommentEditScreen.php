@@ -96,8 +96,7 @@ class CommentEditScreen extends Screen
 
                 TextArea::make('comment.comment')
                     ->title('Comment')
-                    ->placeholder('Attractive but mysterious title')
-                    ->help('Specify a short descriptive title for this article.'),
+                    ->placeholder('Comment'),
 
             ])
         ];

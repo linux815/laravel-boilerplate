@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Contracts\ArticleRepositoryInterface;
 use App\Dto\ArticleDTO;
+use App\Exceptions\ArticleNotFoundException;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -34,12 +35,15 @@ class ArticleRepository implements ArticleRepositoryInterface
         return $this->article->newQuery()->create($articleDTO->jsonSerialize());
     }
 
+    /**
+     * @throws ArticleNotFoundException
+     */
     public function update(int $id, ArticleDTO $articleDTO): bool
     {
         $article = $this->findById($id);
 
         if ($article === null) {
-            return false;
+            throw new ArticleNotFoundException();
         }
 
         return $article->fill($articleDTO->jsonSerialize())->save();

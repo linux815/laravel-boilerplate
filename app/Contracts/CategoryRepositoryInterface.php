@@ -9,7 +9,7 @@ use Illuminate\Pagination\CursorPaginator;
 
 interface CategoryRepositoryInterface
 {
-    public const CATEGORY_PER_PAGE = 1;
+    public const CATEGORY_PER_PAGE = 5;
 
     public function findAllPaginated(): CursorPaginator;
 

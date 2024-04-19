@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
-class CategoryNotFoundException extends Exception
+class CategoryNotFoundException extends CustomException
 {
-    //
+    public function __construct()
+    {
+        parent::__construct('Category not found', 404);
+    }
 }

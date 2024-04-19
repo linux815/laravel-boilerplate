@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
-class CommentNotFoundException extends Exception
+class CommentNotFoundException extends CustomException
 {
-    //
+    public function __construct()
+    {
+        parent::__construct('Comment not found', 404);
+    }
 }

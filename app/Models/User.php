@@ -6,9 +6,11 @@ use Database\Factories\UserFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Support\Carbon;
+use Laravel\Sanctum\HasApiTokens;
 use Orchid\Filters\HttpFilter;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -17,7 +19,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User as Authenticatable;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -72,6 +74,7 @@ use Orchid\Platform\Models\User as Authenticatable;
  */
 class User extends Authenticatable
 {
+    use HasApiTokens, HasFactory;
     /**
      * The attributes that are mass assignable.
      *
