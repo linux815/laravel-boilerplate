@@ -43,6 +43,6 @@ echo "📦 Установка npm зависимостей..."
 docker exec -it "$APP_NAME" npm install
 
 echo "⚙️ Сборка фронтенда..."
-docker exec -it "$APP_NAME" npm run dev
+docker exec -it "$APP_NAME" npm run build
 
 echo "✅ Готово! Открывай: http://boilerplate.test"
