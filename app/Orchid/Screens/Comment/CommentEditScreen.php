@@ -31,6 +31,8 @@ class CommentEditScreen extends Screen
      */
     public function query(Comment $comment): iterable
     {
+        $this->authorize('update-comment', $comment);
+
         return [
             'comment' => $comment,
         ];
@@ -65,12 +67,12 @@ class CommentEditScreen extends Screen
             Button::make('Update')
                 ->icon('note')
                 ->method('update')
-                ->canSee($this->comment->exists),
+                ->canSee($this->comment->exists && auth()->user()?->can('update-comment', $this->comment)),
 
             Button::make('Remove')
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->comment->exists),
+                ->canSee($this->comment->exists && auth()->user()?->can('delete-comment', $this->comment)),
         ];
     }
 

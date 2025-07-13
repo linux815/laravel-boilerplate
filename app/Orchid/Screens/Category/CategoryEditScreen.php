@@ -28,6 +28,8 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category): iterable
     {
+        $this->authorize('update-category', $category);
+
         return [
             'category' => $category,
         ];

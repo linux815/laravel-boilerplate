@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Article;
 
+use App\Domain\Article\Article;
 use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Orchid\Layouts\ArticleListLayout;
 use Orchid\Screen\Action;
@@ -45,7 +46,8 @@ class ArticleListScreen extends Screen
         return [
             Link::make('Create new')
                 ->icon('pencil')
-                ->route('platform.article.edit'),
+                ->route('platform.article.edit')
+                ->canSee(auth()->user()?->can('create-article', Article::class)),
         ];
     }
 

@@ -33,6 +33,8 @@ class ArticleEditScreen extends Screen
      */
     public function query(Article $article): iterable
     {
+        $this->authorize('update-article', $article);
+
         return [
             'article' => $article,
         ];
@@ -72,12 +74,12 @@ class ArticleEditScreen extends Screen
             Button::make('Update')
                 ->icon('note')
                 ->method('update')
-                ->canSee($this->article->exists),
+                ->canSee(auth()->user()?->can('update-article', $this->article) && $this->article->exists),
 
             Button::make('Remove')
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->article->exists),
+                ->canSee(auth()->user()?->can('delete-article', $this->article) && $this->article->exists),
         ];
     }
 

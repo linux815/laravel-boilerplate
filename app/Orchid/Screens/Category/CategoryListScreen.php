@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Category;
 
+use App\Domain\Category\Category;
 use App\Domain\Category\Contracts\CategoryServiceInterface;
 use App\Orchid\Layouts\CategoryListLayout;
 use Orchid\Screen\Action;
@@ -45,7 +46,8 @@ class CategoryListScreen extends Screen
         return [
             Link::make('Create new')
                 ->icon('pencil')
-                ->route('platform.category.edit'),
+                ->route('platform.category.edit')
+                ->canSee(auth()->user()?->can('create-category', Category::class)),
         ];
     }
 
