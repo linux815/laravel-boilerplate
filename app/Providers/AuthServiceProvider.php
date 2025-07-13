@@ -6,8 +6,8 @@ use App\Domain\Article\Article;
 use App\Domain\Article\ArticlePolicy;
 use App\Domain\Category\Category;
 use App\Domain\Category\CategoryPolicy;
-use App\Models\Comment;
-use App\Policies\CommentPolicy;
+use App\Domain\Comment\Comment;
+use App\Domain\Comment\CommentPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

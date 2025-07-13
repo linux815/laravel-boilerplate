@@ -3,11 +3,11 @@
 namespace App\Orchid\Screens\Comment;
 
 use Alert;
-use App\Contracts\CommentServiceInterface;
 use App\Domain\Article\Article;
-use App\Http\Requests\Comment\DeleteCommentRequest;
-use App\Http\Requests\Comment\UpdateCommentRequest;
-use App\Models\Comment;
+use App\Domain\Comment\Comment;
+use App\Domain\Comment\Contracts\CommentServiceInterface;
+use App\Domain\Comment\Requests\DeleteCommentRequest;
+use App\Domain\Comment\Requests\UpdateCommentRequest;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;

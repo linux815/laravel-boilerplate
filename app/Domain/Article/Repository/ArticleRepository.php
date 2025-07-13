@@ -6,10 +6,9 @@ use App\Domain\Article\Article;
 use App\Domain\Article\ArticleDTO;
 use App\Domain\Article\Contracts\ArticleRepositoryInterface;
 use App\Exceptions\ArticleNotFoundException;
-use DB;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Support\Facades\DB;
 
 class ArticleRepository implements ArticleRepositoryInterface
 {
@@ -18,8 +17,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function findAllPaginated(): CursorPaginator
     {
         return $this->article
-            ->with('category')
             ->newQuery()
+            ->with('category')
             ->filters()
             ->select([
                 'articles.*',
@@ -37,30 +36,46 @@ class ArticleRepository implements ArticleRepositoryInterface
     /**
      * @throws ArticleNotFoundException
      */
-    public function update(int $id, ArticleDTO $articleDTO): bool
+    public function update(int $id, ArticleDTO $articleDTO): Model
     {
-        $article = $this->findById($id);
+        $article = $this->findOrFail($id);
+        $article->fill($articleDTO->jsonSerialize());
+        $article->save();
 
-        if ($article === null) {
-            throw new ArticleNotFoundException();
-        }
-
-        return $article->fill($articleDTO->jsonSerialize())->save();
+        return $article;
     }
 
-    public function findById(int $id): Builder|Model|null
+    /**
+     * @throws ArticleNotFoundException
+     */
+    public function findOrFail(int $id): Model
     {
-        return $this->article->with('category', 'comments')->newQuery()->find($id);
+        return $this->findById($id) ?? throw new ArticleNotFoundException();
     }
 
-    public function delete(int $id): void
+    public function findById(int $id): ?Model
     {
-        $article = $this->findById($id);
-        $article?->delete();
+        return $this->article
+            ->newQuery()
+            ->with('category', 'comments')
+            ->find($id);
+    }
+
+    /**
+     * @throws ArticleNotFoundException
+     */
+    public function delete(int $id): bool
+    {
+        $article = $this->findOrFail($id);
+
+        return (bool)$article->delete();
     }
 
     public function getCountsByCategoryId(int $categoryId): int
     {
-        return $this->article->newQuery()->where('category_id', $categoryId)->count();
+        return $this->article
+            ->newQuery()
+            ->where('category_id', $categoryId)
+            ->count();
     }
 }

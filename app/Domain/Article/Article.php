@@ -3,7 +3,7 @@
 namespace App\Domain\Article;
 
 use App\Domain\Category\Category;
-use App\Models\Comment;
+use App\Domain\Comment\Comment;
 use App\Models\User;
 use Database\Factories\ArticleFactory;
 use Eloquent;

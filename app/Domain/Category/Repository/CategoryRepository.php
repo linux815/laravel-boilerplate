@@ -6,7 +6,6 @@ use App\Domain\Category\Category;
 use App\Domain\Category\CategoryDTO;
 use App\Domain\Category\Contracts\CategoryRepositoryInterface;
 use App\Exceptions\CategoryNotFoundException;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;
 
@@ -28,28 +27,40 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $this->category->newQuery()->create($categoryDTO->jsonSerialize());
     }
 
-    public function update(int $id, CategoryDTO $categoryDTO): bool
+    /**
+     * @throws CategoryNotFoundException
+     */
+    public function update(int $id, CategoryDTO $categoryDTO): Model
     {
-        $category = $this->findById($id);
+        $category = $this->findOrFail($id);
+        $category->fill($categoryDTO->jsonSerialize());
+        $category->save();
 
-        if ($category === null) {
-            throw new CategoryNotFoundException();
-        }
-
-        return $category->fill($categoryDTO->jsonSerialize())->save();
+        return $category;
     }
 
-    public function findById(int $id): Builder|Model|null
+    /**
+     * @throws CategoryNotFoundException
+     */
+    public function findOrFail(int $id): Model
+    {
+        return $this->findById($id) ?? throw new CategoryNotFoundException();
+    }
+
+    public function findById(int $id): ?Model
     {
         return $this->category->newQuery()->find($id);
     }
 
-    public function delete(int $id): void
+    /**
+     * @throws CategoryNotFoundException
+     */
+    public function delete(int $id): bool
     {
         if ($this->category->newQuery()->count() <= 1) {
-            return;
+            return false;
         }
-        $category = $this->findById($id);
-        $category?->delete();
+        $category = $this->findOrFail($id);
+        return (bool)$category->delete();
     }
 }

@@ -7,7 +7,6 @@ use App\Domain\Article\Contracts\ArticleRepositoryInterface;
 use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Exceptions\ArticleNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class ArticleService implements ArticleServiceInterface
@@ -22,7 +21,7 @@ class ArticleService implements ArticleServiceInterface
     /**
      * @throws ArticleNotFoundException
      */
-    public function get(int $id): Builder|Model
+    public function get(int $id): ?Model
     {
         $article = $this->articleRepository->findById($id);
 
@@ -33,19 +32,19 @@ class ArticleService implements ArticleServiceInterface
         return $article;
     }
 
-    public function store(ArticleDTO $articleDTO): void
+    public function store(ArticleDTO $articleDTO): Model
     {
-        $this->articleRepository->create($articleDTO);
+        return $this->articleRepository->create($articleDTO);
     }
 
-    public function update(int $id, ArticleDTO $articleDTO): void
+    public function update(int $id, ArticleDTO $articleDTO): Model
     {
-        $this->articleRepository->update($id, $articleDTO);
+        return $this->articleRepository->update($id, $articleDTO);
     }
 
-    public function delete(int $id): void
+    public function delete(int $id): bool
     {
-        $this->articleRepository->delete($id);
+        return $this->articleRepository->delete($id);
     }
 
     public function getCountsByCategoryId(int $categoryId): int

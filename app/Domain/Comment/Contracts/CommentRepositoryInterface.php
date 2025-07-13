@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Domain\Comment\Contracts;
 
-use App\Dto\CommentDTO;
-use Illuminate\Database\Eloquent\Builder;
+use App\Domain\Comment\CommentDTO;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;
 
@@ -13,11 +12,11 @@ interface CommentRepositoryInterface
 
     public function findAllPaginated(): CursorPaginator;
 
-    public function findById(int $id): Model|Builder|null;
+    public function findById(int $id): ?Model;
 
     public function create(CommentDTO $commentDTO): Model;
 
-    public function update(int $id, CommentDTO $commentDTO): bool;
+    public function update(int $id, CommentDTO $commentDTO): Model;
 
-    public function delete(int $id): void;
+    public function delete(int $id): bool;
 }

@@ -8,7 +8,6 @@ use App\Domain\Category\Contracts\CategoryRepositoryInterface;
 use App\Domain\Category\Contracts\CategoryServiceInterface;
 use App\Exceptions\CategoryNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class CategoryService implements CategoryServiceInterface
@@ -26,7 +25,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * @throws CategoryNotFoundException
      */
-    public function get(int $id): Builder|Model
+    public function get(int $id): ?Model
     {
         $article = $this->categoryRepository->findById($id);
 
@@ -37,19 +36,19 @@ class CategoryService implements CategoryServiceInterface
         return $article;
     }
 
-    public function store(CategoryDTO $categoryDTO): void
+    public function store(CategoryDTO $categoryDTO): Model
     {
-        $this->categoryRepository->create($categoryDTO);
+        return $this->categoryRepository->create($categoryDTO);
     }
 
-    public function update(int $id, CategoryDTO $categoryDTO): void
+    public function update(int $id, CategoryDTO $categoryDTO): Model
     {
-        $this->categoryRepository->update($id, $categoryDTO);
+        return $this->categoryRepository->update($id, $categoryDTO);
     }
 
-    public function delete(int $id): void
+    public function delete(int $id): bool
     {
-        $this->categoryRepository->delete($id);
+        return $this->categoryRepository->delete($id);
     }
 
     public function canDelete(int $id): bool

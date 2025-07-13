@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Domain\Comment\Services;
 
-use App\Contracts\CommentRepositoryInterface;
-use App\Contracts\CommentServiceInterface;
-use App\Dto\CommentDTO;
+use App\Domain\Comment\CommentDTO;
+use App\Domain\Comment\Contracts\CommentRepositoryInterface;
+use App\Domain\Comment\Contracts\CommentServiceInterface;
 use App\Exceptions\CommentNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class CommentService implements CommentServiceInterface
@@ -22,7 +21,7 @@ class CommentService implements CommentServiceInterface
     /**
      * @throws CommentNotFoundException
      */
-    public function get(int $id): Builder|Model
+    public function get(int $id): ?Model
     {
         $comment = $this->commentRepository->findById($id);
 
@@ -33,18 +32,18 @@ class CommentService implements CommentServiceInterface
         return $comment;
     }
 
-    public function store(CommentDTO $commentDTO): void
+    public function store(CommentDTO $commentDTO): Model
     {
-        $this->commentRepository->create($commentDTO);
+        return $this->commentRepository->create($commentDTO);
     }
 
-    public function update(int $id, CommentDTO $commentDTO): void
+    public function update(int $id, CommentDTO $commentDTO): Model
     {
-        $this->commentRepository->update($id, $commentDTO);
+        return $this->commentRepository->update($id, $commentDTO);
     }
 
-    public function delete(int $id): void
+    public function delete(int $id): bool
     {
-        $this->commentRepository->delete($id);
+        return $this->commentRepository->delete($id);
     }
 }

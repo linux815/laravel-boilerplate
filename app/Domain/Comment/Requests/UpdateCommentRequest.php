@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Comment;
+namespace App\Domain\Comment\Requests;
 
-use App\Dto\CommentDTO;
-use App\Models\Comment;
+use App\Domain\Comment\Comment;
+use App\Domain\Comment\CommentDTO;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;

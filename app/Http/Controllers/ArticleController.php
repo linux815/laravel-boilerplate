@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Article\Contracts\ArticleServiceInterface;
+use App\Domain\Article\Requests\ShowArticleRequest;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -23,7 +24,7 @@ class ArticleController extends Controller
         return inertia('Articles', compact('articles'));
     }
 
-    public function show(Request $request, $id): Response|ResponseFactory
+    public function show(ShowArticleRequest $request, int $id): Response|ResponseFactory
     {
         $article = $this->articleService->get($id);
 

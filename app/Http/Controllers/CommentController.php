@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\CommentServiceInterface;
-use App\Http\Requests\Comment\StoreCommentRequest;
+use App\Domain\Comment\Contracts\CommentServiceInterface;
+use App\Domain\Comment\Requests\StoreCommentRequest;
 use Illuminate\Http\RedirectResponse;
 
 class CommentController extends Controller

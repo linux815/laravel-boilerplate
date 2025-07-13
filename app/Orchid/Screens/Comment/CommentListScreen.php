@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Comment;
 
-use App\Contracts\CommentServiceInterface;
+use App\Domain\Comment\Contracts\CommentServiceInterface;
 use App\Orchid\Layouts\CommentListLayout;
 use Orchid\Screen\Action;
 use Orchid\Screen\Layout;
