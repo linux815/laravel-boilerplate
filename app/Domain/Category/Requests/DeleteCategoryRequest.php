@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Domain\Category\Requests;
 
-use App\Models\Category;
+use App\Domain\Category\Category;
 use Gate;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;

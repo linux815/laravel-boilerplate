@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Domain\Category\Repository;
 
-use App\Contracts\CategoryRepositoryInterface;
-use App\Dto\CategoryDTO;
+use App\Domain\Category\Category;
+use App\Domain\Category\CategoryDTO;
+use App\Domain\Category\Contracts\CategoryRepositoryInterface;
 use App\Exceptions\CategoryNotFoundException;
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;

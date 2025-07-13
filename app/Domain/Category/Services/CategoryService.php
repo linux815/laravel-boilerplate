@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Domain\Category\Services;
 
-use App\Contracts\CategoryRepositoryInterface;
-use App\Contracts\CategoryServiceInterface;
 use App\Domain\Article\Contracts\ArticleServiceInterface;
-use App\Dto\CategoryDTO;
+use App\Domain\Category\CategoryDTO;
+use App\Domain\Category\Contracts\CategoryRepositoryInterface;
+use App\Domain\Category\Contracts\CategoryServiceInterface;
 use App\Exceptions\CategoryNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;

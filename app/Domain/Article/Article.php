@@ -2,7 +2,7 @@
 
 namespace App\Domain\Article;
 
-use App\Models\Category;
+use App\Domain\Category\Category;
 use App\Models\Comment;
 use App\Models\User;
 use Database\Factories\ArticleFactory;

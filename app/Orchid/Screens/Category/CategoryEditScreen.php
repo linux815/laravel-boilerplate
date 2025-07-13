@@ -2,11 +2,11 @@
 
 namespace App\Orchid\Screens\Category;
 
-use App\Contracts\CategoryServiceInterface;
-use App\Http\Requests\Category\DeleteCategoryRequest;
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Models\Category;
+use App\Domain\Category\Category;
+use App\Domain\Category\Contracts\CategoryServiceInterface;
+use App\Domain\Category\Requests\DeleteCategoryRequest;
+use App\Domain\Category\Requests\StoreCategoryRequest;
+use App\Domain\Category\Requests\UpdateCategoryRequest;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;

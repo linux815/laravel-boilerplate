@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use App\Domain\Article\Article;
 use App\Domain\Article\ArticlePolicy;
-use App\Models\Category;
+use App\Domain\Category\Category;
+use App\Domain\Category\CategoryPolicy;
 use App\Models\Comment;
-use App\Policies\CategoryPolicy;
 use App\Policies\CommentPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

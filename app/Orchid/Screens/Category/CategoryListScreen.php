@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Category;
 
-use App\Contracts\CategoryServiceInterface;
+use App\Domain\Category\Contracts\CategoryServiceInterface;
 use App\Orchid\Layouts\CategoryListLayout;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;

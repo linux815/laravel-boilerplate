@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
-use App\Contracts\CategoryRepositoryInterface;
-use App\Contracts\CategoryServiceInterface;
 use App\Contracts\CommentRepositoryInterface;
 use App\Contracts\CommentServiceInterface;
 use App\Domain\Article\Contracts\ArticleRepositoryInterface;
 use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Domain\Article\Repository\ArticleRepository;
 use App\Domain\Article\Services\ArticleService;
-use App\Repository\CategoryRepository;
+use App\Domain\Category\Contracts\CategoryRepositoryInterface;
+use App\Domain\Category\Contracts\CategoryServiceInterface;
+use App\Domain\Category\Repository\CategoryRepository;
+use App\Domain\Category\Services\CategoryService;
 use App\Repository\CommentRepository;
-use App\Services\CategoryService;
 use App\Services\CommentService;
 use Illuminate\Support\ServiceProvider;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Domain\Category\Contracts;
 
-use App\Dto\CategoryDTO;
+use App\Domain\Category\CategoryDTO;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;

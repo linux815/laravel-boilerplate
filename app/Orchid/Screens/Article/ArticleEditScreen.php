@@ -8,7 +8,7 @@ use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Domain\Article\Requests\DeleteArticleRequest;
 use App\Domain\Article\Requests\StoreArticleRequest;
 use App\Domain\Article\Requests\UpdateArticleRequest;
-use App\Models\Category;
+use App\Domain\Category\Category;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
