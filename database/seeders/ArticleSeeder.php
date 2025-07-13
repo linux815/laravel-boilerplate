@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
-use DB;
+use App\Domain\Article\Article;
 use Illuminate\Database\Seeder;
 
 class ArticleSeeder extends Seeder

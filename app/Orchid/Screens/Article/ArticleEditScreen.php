@@ -3,11 +3,11 @@
 namespace App\Orchid\Screens\Article;
 
 use Alert;
-use App\Contracts\ArticleServiceInterface;
-use App\Http\Requests\Article\DeleteArticleRequest;
-use App\Http\Requests\Article\StoreArticleRequest;
-use App\Http\Requests\Article\UpdateArticleRequest;
-use App\Models\Article;
+use App\Domain\Article\Article;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
+use App\Domain\Article\Requests\DeleteArticleRequest;
+use App\Domain\Article\Requests\StoreArticleRequest;
+use App\Domain\Article\Requests\UpdateArticleRequest;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;

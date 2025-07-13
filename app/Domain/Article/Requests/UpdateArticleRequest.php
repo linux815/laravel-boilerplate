@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Requests\Article;
+namespace App\Domain\Article\Requests;
 
-use App\Dto\ArticleDTO;
-use App\Models\Article;
+use App\Domain\Article\Article;
+use App\Domain\Article\ArticleDTO;
 use Gate;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreArticleRequest extends FormRequest
+class UpdateArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Gate::allows('create-article', Article::class);
+        return Gate::allows('update-article', Article::class);
     }
 
     /**

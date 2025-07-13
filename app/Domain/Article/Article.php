@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Article;
 
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\User;
 use Database\Factories\ArticleFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;

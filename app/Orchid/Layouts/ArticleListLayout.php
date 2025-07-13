@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Layouts;
 
-use App\Models\Article;
+use App\Domain\Article\Article;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;

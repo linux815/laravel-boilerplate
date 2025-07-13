@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Domain\Article\Repository;
 
-use App\Contracts\ArticleRepositoryInterface;
-use App\Dto\ArticleDTO;
+use App\Domain\Article\Article;
+use App\Domain\Article\ArticleDTO;
+use App\Domain\Article\Contracts\ArticleRepositoryInterface;
 use App\Exceptions\ArticleNotFoundException;
-use App\Models\Article;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

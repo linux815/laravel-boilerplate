@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Article;
+use App\Domain\Article\Article;
+use App\Domain\Article\ArticlePolicy;
 use App\Models\Category;
 use App\Models\Comment;
-use App\Policies\ArticlePolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\CommentPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

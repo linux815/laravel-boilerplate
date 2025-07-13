@@ -13,8 +13,8 @@ namespace PHPSTORM_META {
     */
     override(new \Illuminate\Contracts\Container\Container, map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -125,8 +125,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Container\Container::makeWith(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -237,8 +237,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::get(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -349,8 +349,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -461,8 +461,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -573,8 +573,8 @@ namespace PHPSTORM_META {
         ]));
     override(\App::get(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -685,8 +685,8 @@ namespace PHPSTORM_META {
         ]));
     override(\App::make(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -797,8 +797,8 @@ namespace PHPSTORM_META {
         ]));
     override(\App::makeWith(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -909,8 +909,8 @@ namespace PHPSTORM_META {
         ]));
     override(\app(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -1021,8 +1021,8 @@ namespace PHPSTORM_META {
         ]));
     override(\resolve(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -1133,8 +1133,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Psr\Container\ContainerInterface::get(0), map([
         '' => '@',
-            'App\Contracts\ArticleRepositoryInterface' => \App\Repository\ArticleRepository::class,
-            'App\Contracts\ArticleServiceInterface' => \App\Services\ArticleService::class,
+            'App\Contracts\ArticleRepositoryInterface' => \App\Domain\Article\Repository\ArticleRepository::class,
+            'App\Contracts\ArticleServiceInterface' => \App\Domain\Article\Services\ArticleService::class,
             'App\Contracts\CategoryRepositoryInterface' => \App\Repository\CategoryRepository::class,
             'App\Contracts\CategoryServiceInterface' => \App\Services\CategoryService::class,
             'App\Contracts\CommentRepositoryInterface' => \App\Repository\CommentRepository::class,
@@ -3064,10 +3064,10 @@ namespace PHPSTORM_META {
     override(\tap(0), type(0));
     override(\optional(0), type(0));
 
-            registerArgumentsSet('auth', 
+            registerArgumentsSet('auth',
 'viewTelescope','createArticle','updateArticle','deleteArticle','createCategory',
 'updateCategory','deleteCategory','updateComment','deleteComment',);
-        registerArgumentsSet('configs', 
+        registerArgumentsSet('configs',
 'app.name','app.env','app.debug','app.url','app.frontend_url',
 'app.asset_url','app.timezone','app.locale','app.fallback_locale','app.faker_locale',
 'app.cipher','app.key','app.previous_keys','app.maintenance.driver','app.providers',
@@ -3186,11 +3186,11 @@ namespace PHPSTORM_META {
 'ide-helper.include_class_docblocks','ide-helper.force_fqn','ide-helper.use_generics_annotations','ide-helper.additional_relation_types','ide-helper.additional_relation_return_types',
 'ide-helper.enforce_nullable_relationships','ide-helper.post_migrate','ide-helper.macroable_traits','tinker.commands','tinker.alias',
 'tinker.dont_alias',);
-        registerArgumentsSet('middleware', 
+        registerArgumentsSet('middleware',
 'web','api','auth','auth.basic','auth.session',
 'cache.headers','can','guest','password.confirm','precognitive',
 'signed','throttle','verified',);
-        registerArgumentsSet('routes', 
+        registerArgumentsSet('routes',
 'login','login.store','logout','password.request','password.reset',
 'password.email','password.update','register','register.store','user-profile-information.update',
 'user-password.update','password.confirm','password.confirmation','password.confirm.store','two-factor.login',
@@ -3206,7 +3206,7 @@ namespace PHPSTORM_META {
 'platform.comment.list','platform.resource.create','platform.resource.view','platform.resource.edit','platform.resource.list',
 'ignition.healthCheck','ignition.executeSolution','ignition.updateConfig','articles','articles.show','comments.index',
 'comments.store',);
-        registerArgumentsSet('views', 
+        registerArgumentsSet('views',
 'app','brand.footer','brand.header','emails.team-invitation','errors.404',
 'errors.500','blade-icon::icon','breadcrumbs::breadcrumbs','laravel-exceptions-renderer::components.card','laravel-exceptions-renderer::components.context',
 'laravel-exceptions-renderer::components.editor','laravel-exceptions-renderer::components.header','laravel-exceptions-renderer::components.icons.chevron-down','laravel-exceptions-renderer::components.icons.chevron-up','laravel-exceptions-renderer::components.icons.computer-desktop',
@@ -3235,7 +3235,7 @@ namespace PHPSTORM_META {
 'platform::partials.profile','platform::partials.result','platform::partials.result-compact','platform::partials.search','platform::partials.search-modal',
 'platform::partials.state','platform::partials.toast','platform::partials.update-assets','platform::partials.welcome','platform::workspace.compact',
 'platform::workspace.full','telescope::layout',);
-        registerArgumentsSet('translations', 
+        registerArgumentsSet('translations',
 'auth.failed','auth.password','auth.throttle','pagination.previous','pagination.next',
 'passwords.reset','passwords.sent','passwords.throttled','passwords.token','passwords.user',
 'validation.accepted','validation.accepted_if','validation.active_url','validation.after','validation.after_or_equal',
@@ -3265,7 +3265,7 @@ namespace PHPSTORM_META {
 'validation.size.array','validation.size.file','validation.size.numeric','validation.size.string','validation.starts_with',
 'validation.string','validation.timezone','validation.unique','validation.uploaded','validation.uppercase',
 'validation.url','validation.ulid','validation.uuid','validation.custom.attribute-name.rule-name',);
-        registerArgumentsSet('env', 
+        registerArgumentsSet('env',
 'APP_NAME','APP_ENV','APP_KEY','APP_DEBUG','APP_URL',
 'LOG_CHANNEL','LOG_DEPRECATIONS_CHANNEL','LOG_LEVEL','DB_CONNECTION','DB_HOST',
 'DB_PORT','DB_DATABASE','DB_USERNAME','DB_PASSWORD','FORWARD_DB_PORT',
@@ -3277,7 +3277,7 @@ namespace PHPSTORM_META {
 'PUSHER_APP_SECRET','PUSHER_HOST','PUSHER_PORT','PUSHER_SCHEME','PUSHER_APP_CLUSTER',
 'VITE_APP_NAME','VITE_PUSHER_APP_KEY','VITE_PUSHER_HOST','VITE_PUSHER_PORT','VITE_PUSHER_SCHEME',
 'VITE_PUSHER_APP_CLUSTER',);
-        
+
                 expectedArguments(\Illuminate\Support\Facades\Gate::has(), 0, argumentsSet('auth'));
     expectedArguments(\Illuminate\Support\Facades\Gate::allows(), 0, argumentsSet('auth'));
     expectedArguments(\Illuminate\Support\Facades\Gate::denies(), 0, argumentsSet('auth'));
@@ -3341,5 +3341,5 @@ namespace PHPSTORM_META {
                 expectedArguments(\Illuminate\Contracts\Translation\Translator::get(), 0, argumentsSet('translations'));
                 expectedArguments(\env(), 0, argumentsSet('env'));
                 expectedArguments(\Illuminate\Support\Env::get(), 0, argumentsSet('env'));
-            
+
 }

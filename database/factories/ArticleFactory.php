@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Article;
+use App\Domain\Article\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Domain\Article\Article>
  */
 class ArticleFactory extends Factory
 {

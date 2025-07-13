@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Domain\Article\Services;
 
-use App\Contracts\ArticleRepositoryInterface;
-use App\Contracts\ArticleServiceInterface;
-use App\Dto\ArticleDTO;
+use App\Domain\Article\ArticleDTO;
+use App\Domain\Article\Contracts\ArticleRepositoryInterface;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Exceptions\ArticleNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;

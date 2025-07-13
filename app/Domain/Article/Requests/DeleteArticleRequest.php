@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Article;
+namespace App\Domain\Article\Requests;
 
-use App\Models\Article;
+use App\Domain\Article\Article;
 use Gate;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;

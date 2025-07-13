@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Article;
 
-use App\Contracts\ArticleServiceInterface;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Orchid\Layouts\ArticleListLayout;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;

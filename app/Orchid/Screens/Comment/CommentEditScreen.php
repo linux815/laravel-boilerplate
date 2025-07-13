@@ -4,9 +4,9 @@ namespace App\Orchid\Screens\Comment;
 
 use Alert;
 use App\Contracts\CommentServiceInterface;
+use App\Domain\Article\Article;
 use App\Http\Requests\Comment\DeleteCommentRequest;
 use App\Http\Requests\Comment\UpdateCommentRequest;
-use App\Models\Article;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;

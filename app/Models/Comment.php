@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Domain\Article\Article;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

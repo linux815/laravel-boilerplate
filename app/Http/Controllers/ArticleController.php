@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\ArticleServiceInterface;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Http\Request;
 use Inertia\Response;

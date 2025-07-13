@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Contracts\ArticleServiceInterface;
 use App\Contracts\CategoryRepositoryInterface;
 use App\Contracts\CategoryServiceInterface;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Dto\CategoryDTO;
 use App\Exceptions\CategoryNotFoundException;
 use Illuminate\Contracts\Pagination\CursorPaginator;
