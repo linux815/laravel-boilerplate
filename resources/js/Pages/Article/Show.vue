@@ -6,7 +6,7 @@ const props = defineProps(['article']);
 
 <template>
     <AppLayout title="Show article">
-        <div class="relative container px-4 mx-auto">
+        <div class="relative container px-4 mx-auto mt-2 mb-2">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <a class="inline-flex items-center text-xl font-semibold text-orange-900 hover:text-gray-900" :href="route('articles')">

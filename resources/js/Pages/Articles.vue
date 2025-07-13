@@ -6,7 +6,7 @@ defineProps(['articles']);
 
 <template>
     <AppLayout title="Articles">
-        <div class="relative container px-4 mx-auto">
+        <div class="relative container px-4 mx-auto mt-2 mb-2">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <Article :articles="articles"/>
