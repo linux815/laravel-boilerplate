@@ -3,12 +3,12 @@
 namespace App\Orchid\Screens\Article;
 
 use Alert;
-use App\Contracts\ArticleServiceInterface;
-use App\Http\Requests\Article\DeleteArticleRequest;
-use App\Http\Requests\Article\StoreArticleRequest;
-use App\Http\Requests\Article\UpdateArticleRequest;
-use App\Models\Article;
-use App\Models\Category;
+use App\Domain\Article\Article;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
+use App\Domain\Article\Requests\DeleteArticleRequest;
+use App\Domain\Article\Requests\StoreArticleRequest;
+use App\Domain\Article\Requests\UpdateArticleRequest;
+use App\Domain\Category\Category;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
@@ -24,9 +24,7 @@ class ArticleEditScreen extends Screen
 {
     public $article;
 
-    public function __construct(private readonly ArticleServiceInterface $articleService)
-    {
-    }
+    public function __construct(private readonly ArticleServiceInterface $articleService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -35,6 +33,8 @@ class ArticleEditScreen extends Screen
      */
     public function query(Article $article): iterable
     {
+        $this->authorize('update-article', $article);
+
         return [
             'article' => $article,
         ];
@@ -74,12 +74,12 @@ class ArticleEditScreen extends Screen
             Button::make('Update')
                 ->icon('note')
                 ->method('update')
-                ->canSee($this->article->exists),
+                ->canSee(auth()->user()?->can('update-article', $this->article) && $this->article->exists),
 
             Button::make('Remove')
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->article->exists),
+                ->canSee(auth()->user()?->can('delete-article', $this->article) && $this->article->exists),
         ];
     }
 
@@ -109,7 +109,7 @@ class ArticleEditScreen extends Screen
                 Quill::make('article.content')
                     ->title('Main text'),
 
-            ])
+            ]),
         ];
     }
 

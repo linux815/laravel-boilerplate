@@ -2,7 +2,8 @@
 
 namespace App\Orchid\Screens\Article;
 
-use App\Contracts\ArticleServiceInterface;
+use App\Domain\Article\Article;
+use App\Domain\Article\Contracts\ArticleServiceInterface;
 use App\Orchid\Layouts\ArticleListLayout;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
@@ -11,9 +12,7 @@ use Orchid\Screen\Screen;
 
 class ArticleListScreen extends Screen
 {
-    public function __construct(private readonly ArticleServiceInterface $articleService)
-    {
-    }
+    public function __construct(private readonly ArticleServiceInterface $articleService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -48,6 +47,7 @@ class ArticleListScreen extends Screen
             Link::make('Create new')
                 ->icon('pencil')
                 ->route('platform.article.edit')
+                ->canSee(auth()->user()?->can('create-article', Article::class)),
         ];
     }
 
@@ -59,7 +59,7 @@ class ArticleListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            ArticleListLayout::class
+            ArticleListLayout::class,
         ];
     }
 }

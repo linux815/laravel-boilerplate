@@ -3,11 +3,11 @@
 namespace App\Orchid\Screens\Comment;
 
 use Alert;
-use App\Contracts\CommentServiceInterface;
-use App\Http\Requests\Comment\DeleteCommentRequest;
-use App\Http\Requests\Comment\UpdateCommentRequest;
-use App\Models\Article;
-use App\Models\Comment;
+use App\Domain\Article\Article;
+use App\Domain\Comment\Comment;
+use App\Domain\Comment\Contracts\CommentServiceInterface;
+use App\Domain\Comment\Requests\DeleteCommentRequest;
+use App\Domain\Comment\Requests\UpdateCommentRequest;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
@@ -22,9 +22,7 @@ class CommentEditScreen extends Screen
 {
     public $comment;
 
-    public function __construct(private readonly CommentServiceInterface $commentService)
-    {
-    }
+    public function __construct(private readonly CommentServiceInterface $commentService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -33,6 +31,8 @@ class CommentEditScreen extends Screen
      */
     public function query(Comment $comment): iterable
     {
+        $this->authorize('update-comment', $comment);
+
         return [
             'comment' => $comment,
         ];
@@ -67,12 +67,12 @@ class CommentEditScreen extends Screen
             Button::make('Update')
                 ->icon('note')
                 ->method('update')
-                ->canSee($this->comment->exists),
+                ->canSee($this->comment->exists && auth()->user()?->can('update-comment', $this->comment)),
 
             Button::make('Remove')
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->comment->exists),
+                ->canSee($this->comment->exists && auth()->user()?->can('delete-comment', $this->comment)),
         ];
     }
 
@@ -98,7 +98,7 @@ class CommentEditScreen extends Screen
                     ->title('Comment')
                     ->placeholder('Comment'),
 
-            ])
+            ]),
         ];
     }
 

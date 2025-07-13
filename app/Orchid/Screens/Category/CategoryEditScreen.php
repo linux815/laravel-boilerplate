@@ -2,11 +2,11 @@
 
 namespace App\Orchid\Screens\Category;
 
-use App\Contracts\CategoryServiceInterface;
-use App\Http\Requests\Category\DeleteCategoryRequest;
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Models\Category;
+use App\Domain\Category\Category;
+use App\Domain\Category\Contracts\CategoryServiceInterface;
+use App\Domain\Category\Requests\DeleteCategoryRequest;
+use App\Domain\Category\Requests\StoreCategoryRequest;
+use App\Domain\Category\Requests\UpdateCategoryRequest;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -19,9 +19,7 @@ class CategoryEditScreen extends Screen
 {
     public $category;
 
-    public function __construct(private readonly CategoryServiceInterface $categoryService)
-    {
-    }
+    public function __construct(private readonly CategoryServiceInterface $categoryService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -30,6 +28,8 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category): iterable
     {
+        $this->authorize('update-category', $category);
+
         return [
             'category' => $category,
         ];
@@ -87,7 +87,7 @@ class CategoryEditScreen extends Screen
                 Input::make('category.name')
                     ->title('Name')
                     ->placeholder('Enter the name of the category'),
-            ])
+            ]),
         ];
     }
 

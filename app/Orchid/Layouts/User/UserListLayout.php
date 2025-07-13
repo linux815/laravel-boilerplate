@@ -32,13 +32,14 @@ class UserListLayout extends Table
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
-                ->render(fn (User $user) => new Persona($user->presenter())),
+                ->render(fn(User $user) => new Persona($user->presenter())),
 
             TD::make('email', __('Email'))
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
-                ->render(fn (User $user) => ModalToggle::make($user->email)
+                ->render(fn(User $user)
+                    => ModalToggle::make($user->email)
                     ->modal('asyncEditUserModal')
                     ->modalTitle($user->presenter()->title())
                     ->method('saveUser')
@@ -60,7 +61,8 @@ class UserListLayout extends Table
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(fn (User $user) => DropDown::make()
+                ->render(fn(User $user)
+                    => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
 
@@ -70,7 +72,11 @@ class UserListLayout extends Table
 
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
-                            ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
+                            ->confirm(
+                                __(
+                                    'Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
+                                ),
+                            )
                             ->method('remove', [
                                 'id' => $user->id,
                             ]),

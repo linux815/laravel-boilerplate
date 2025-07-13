@@ -1,20 +1,48 @@
+#!/bin/bash
+
+# Обеспечить запуск от root
 [ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
-docker exec -it laravel-boilerplate-laravel.test-1 cp .env.example .env
+
+APP_NAME="laravel-boilerplate-laravel.test-1"
+HOST_ENTRY="127.0.0.1 boilerplate.test"
+
+echo "📦 Копирование .env файла..."
+docker exec -it "$APP_NAME" cp .env.example .env || cp .env.example .env
+
+echo "🧹 Остановка и очистка контейнеров..."
 docker compose down -v
-cp .env.example .env
+
+echo "📦 Установка Composer зависимостей..."
 docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v $(pwd):/opt \
-    -w /opt \
-    laravelsail/php82-composer:latest \
-    composer install --ignore-platform-reqs
+  -u "$(id -u):$(id -g)" \
+  -v "$(pwd)":/opt \
+  -w /opt \
+  laravelsail/php84-composer:latest \
+  composer install --ignore-platform-reqs
+
+echo "🐳 Запуск контейнеров..."
 ./vendor/bin/sail up -d
 sleep 10
-sudo echo "127.0.0.1  boilerplate.test" >> /etc/hosts
-docker exec -it laravel-boilerplate-laravel.test-1 php artisan key:generate
-docker exec -it laravel-boilerplate-laravel.test-1 php artisan migrate
-docker exec -it laravel-boilerplate-laravel.test-1 php artisan orchid:admin admin admin@admin.com password
-docker exec -it laravel-boilerplate-laravel.test-1 php artisan db:seed --force
-docker exec -it laravel-boilerplate-laravel.test-1 npm install
-docker exec -it laravel-boilerplate-laravel.test-1 npm run dev
-echo 'http://boilerplate.test'
+
+echo "🌐 Добавление в /etc/hosts..."
+grep -qF "$HOST_ENTRY" /etc/hosts || echo "$HOST_ENTRY" >> /etc/hosts
+
+echo "🔑 Генерация APP_KEY..."
+docker exec -it "$APP_NAME" php artisan key:generate
+
+echo "📂 Миграции базы данных..."
+docker exec -it "$APP_NAME" php artisan migrate
+
+echo "👤 Создание Orchid администратора..."
+docker exec -it "$APP_NAME" php artisan orchid:admin admin admin@admin.com password
+
+echo "🌱 Сидирование базы..."
+docker exec -it "$APP_NAME" php artisan db:seed --force
+
+echo "📦 Установка npm зависимостей..."
+docker exec -it "$APP_NAME" npm install
+
+echo "⚙️ Сборка фронтенда..."
+docker exec -it "$APP_NAME" npm run build
+
+echo "✅ Готово! Открывай: http://boilerplate.test"

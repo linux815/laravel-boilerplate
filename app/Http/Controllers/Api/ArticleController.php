@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Contracts\ArticleServiceInterface;
-
+use App\Domain\Article\Contracts\ArticleServiceInterface;
 use Illuminate\Http\JsonResponse;
 
 class ArticleController
 {
-    public function __construct(private readonly ArticleServiceInterface $articleService)
-    {
-    }
+    public function __construct(private readonly ArticleServiceInterface $articleService) {}
 
     public function __invoke(): JsonResponse
     {

@@ -2,7 +2,8 @@
 
 namespace App\Orchid\Screens\Category;
 
-use App\Contracts\CategoryServiceInterface;
+use App\Domain\Category\Category;
+use App\Domain\Category\Contracts\CategoryServiceInterface;
 use App\Orchid\Layouts\CategoryListLayout;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
@@ -11,9 +12,7 @@ use Orchid\Screen\Screen;
 
 class CategoryListScreen extends Screen
 {
-    public function __construct(private readonly CategoryServiceInterface $categoryService)
-    {
-    }
+    public function __construct(private readonly CategoryServiceInterface $categoryService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -48,6 +47,7 @@ class CategoryListScreen extends Screen
             Link::make('Create new')
                 ->icon('pencil')
                 ->route('platform.category.edit')
+                ->canSee(auth()->user()?->can('create-category', Category::class)),
         ];
     }
 
@@ -59,7 +59,7 @@ class CategoryListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            CategoryListLayout::class
+            CategoryListLayout::class,
         ];
     }
 }

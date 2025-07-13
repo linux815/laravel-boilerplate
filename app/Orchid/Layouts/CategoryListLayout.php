@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Layouts;
 
-use App\Models\Category;
+use App\Domain\Category\Category;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -33,7 +33,9 @@ class CategoryListLayout extends Table
                         ->route('platform.category.edit', $category);
                 }),
 
-            TD::make('created_at', 'Created')->sort()->render(fn (Category $category) => $category->created_at?->format('Y-m-d H:i:s')),
+            TD::make('created_at', 'Created')->sort()->render(
+                fn(Category $category) => $category->created_at->format('Y-m-d H:i:s'),
+            ),
         ];
     }
 }
