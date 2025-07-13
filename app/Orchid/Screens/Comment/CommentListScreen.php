@@ -10,9 +10,7 @@ use Orchid\Screen\Screen;
 
 class CommentListScreen extends Screen
 {
-    public function __construct(private readonly CommentServiceInterface $commentService)
-    {
-    }
+    public function __construct(private readonly CommentServiceInterface $commentService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -54,7 +52,7 @@ class CommentListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            CommentListLayout::class
+            CommentListLayout::class,
         ];
     }
 }

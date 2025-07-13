@@ -1,0 +1,14 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    level: 5  # максимальный уровень проверки (0..max)
+    paths:
+        - app
+        - routes
+    # Если используешь тесты, добавь:
+    # - tests
+
+    # Можно настроить игнорирование ошибок:
+    ignoreErrors:
+        - '#Orchid\\#'  # Игнорировать все ошибки, где есть "Orchid\"

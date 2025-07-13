@@ -33,7 +33,9 @@ class CategoryListLayout extends Table
                         ->route('platform.category.edit', $category);
                 }),
 
-            TD::make('created_at', 'Created')->sort()->render(fn (Category $category) => $category->created_at?->format('Y-m-d H:i:s')),
+            TD::make('created_at', 'Created')->sort()->render(
+                fn(Category $category) => $category->created_at->format('Y-m-d H:i:s'),
+            ),
         ];
     }
 }

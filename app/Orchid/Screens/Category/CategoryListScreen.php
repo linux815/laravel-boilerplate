@@ -11,9 +11,7 @@ use Orchid\Screen\Screen;
 
 class CategoryListScreen extends Screen
 {
-    public function __construct(private readonly CategoryServiceInterface $categoryService)
-    {
-    }
+    public function __construct(private readonly CategoryServiceInterface $categoryService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -47,7 +45,7 @@ class CategoryListScreen extends Screen
         return [
             Link::make('Create new')
                 ->icon('pencil')
-                ->route('platform.category.edit')
+                ->route('platform.category.edit'),
         ];
     }
 
@@ -59,7 +57,7 @@ class CategoryListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            CategoryListLayout::class
+            CategoryListLayout::class,
         ];
     }
 }

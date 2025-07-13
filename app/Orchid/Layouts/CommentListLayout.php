@@ -39,8 +39,12 @@ class CommentListLayout extends Table
                         ->route('platform.comment.edit', $comment);
                 }),
 
-            TD::make('created_at', 'Created')->sort()->render(fn (Comment $comment) => $comment->created_at?->format('Y-m-d H:i:s')),
-            TD::make('updated_at', 'Updated')->sort()->render(fn (Comment $comment) => $comment->updated_at?->format('Y-m-d H:i:s')),
+            TD::make('created_at', 'Created')->sort()->render(
+                fn(Comment $comment) => $comment->created_at->format('Y-m-d H:i:s'),
+            ),
+            TD::make('updated_at', 'Updated')->sort()->render(
+                fn(Comment $comment) => $comment->updated_at->format('Y-m-d H:i:s'),
+            ),
         ];
     }
 }

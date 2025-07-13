@@ -12,9 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArticleService implements ArticleServiceInterface
 {
-    public function __construct(private readonly ArticleRepositoryInterface $articleRepository)
-    {
-    }
+    public function __construct(private readonly ArticleRepositoryInterface $articleRepository) {}
 
     public function getPaginated(): CursorPaginator
     {
@@ -24,7 +22,7 @@ class ArticleService implements ArticleServiceInterface
     /**
      * @throws ArticleNotFoundException
      */
-    public function get(int $id): Builder | Model
+    public function get(int $id): Builder|Model
     {
         $article = $this->articleRepository->findById($id);
 

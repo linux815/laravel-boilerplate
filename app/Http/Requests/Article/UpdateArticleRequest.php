@@ -16,7 +16,6 @@ class UpdateArticleRequest extends FormRequest
     public function authorize(): bool
     {
         return Gate::allows('update-article', Article::class);
-
     }
 
     /**

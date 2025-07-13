@@ -22,9 +22,7 @@ class CommentEditScreen extends Screen
 {
     public $comment;
 
-    public function __construct(private readonly CommentServiceInterface $commentService)
-    {
-    }
+    public function __construct(private readonly CommentServiceInterface $commentService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -98,7 +96,7 @@ class CommentEditScreen extends Screen
                     ->title('Comment')
                     ->placeholder('Comment'),
 
-            ])
+            ]),
         ];
     }
 

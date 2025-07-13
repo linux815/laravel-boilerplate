@@ -12,21 +12,15 @@ use Illuminate\Pagination\CursorPaginator;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    public function __construct(private readonly Category $category)
-    {
-    }
+    public function __construct(private readonly Category $category) {}
 
     public function findAllPaginated(): CursorPaginator
     {
-        return $this->category->newQuery()
+        return $this->category
+            ->newQuery()
             ->filters()
             ->latest()
             ->cursorPaginate(self::CATEGORY_PER_PAGE);
-    }
-
-    public function findById(int $id): Builder | Model | null
-    {
-        return $this->category->newQuery()->find($id);
     }
 
     public function create(CategoryDTO $categoryDTO): Model
@@ -43,6 +37,11 @@ class CategoryRepository implements CategoryRepositoryInterface
         }
 
         return $category->fill($categoryDTO->jsonSerialize())->save();
+    }
+
+    public function findById(int $id): Builder|Model|null
+    {
+        return $this->category->newQuery()->find($id);
     }
 
     public function delete(int $id): void

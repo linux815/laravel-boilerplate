@@ -13,7 +13,7 @@ interface CategoryRepositoryInterface
 
     public function findAllPaginated(): CursorPaginator;
 
-    public function findById(int $id): Model | Builder | null;
+    public function findById(int $id): Model|Builder|null;
 
     public function create(CategoryDTO $categoryDTO): Model;
 

@@ -12,21 +12,15 @@ use Illuminate\Pagination\CursorPaginator;
 
 class CommentRepository implements CommentRepositoryInterface
 {
-    public function __construct(private readonly Comment $comment)
-    {
-    }
+    public function __construct(private readonly Comment $comment) {}
 
     public function findAllPaginated(): CursorPaginator
     {
-        return $this->comment->newQuery()
+        return $this->comment
+            ->newQuery()
             ->filters()
             ->latest()
             ->cursorPaginate(self::COMMENTS_PER_PAGE);
-    }
-
-    public function findById(int $id): Builder | Model | null
-    {
-        return $this->comment->newQuery()->find($id);
     }
 
     public function create(CommentDTO $commentDTO): Model
@@ -43,6 +37,11 @@ class CommentRepository implements CommentRepositoryInterface
         }
 
         return $comment->fill($commentDTO->jsonSerialize())->save();
+    }
+
+    public function findById(int $id): Builder|Model|null
+    {
+        return $this->comment->newQuery()->find($id);
     }
 
     public function delete(int $id): void

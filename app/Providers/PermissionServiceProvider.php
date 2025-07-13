@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 
 class PermissionServiceProvider extends ServiceProvider
 {

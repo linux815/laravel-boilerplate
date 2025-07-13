@@ -6,32 +6,27 @@ use App\Contracts\ArticleRepositoryInterface;
 use App\Dto\ArticleDTO;
 use App\Exceptions\ArticleNotFoundException;
 use App\Models\Article;
+use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;
 
 class ArticleRepository implements ArticleRepositoryInterface
 {
-    public function __construct(private readonly Article $article)
-    {
-    }
+    public function __construct(private readonly Article $article) {}
 
     public function findAllPaginated(): CursorPaginator
     {
-        return $this->article->with('category')
+        return $this->article
+            ->with('category')
             ->newQuery()
             ->filters()
             ->select([
                 'articles.*',
-                \DB::raw('articles.id as article_id'),
+                DB::raw('articles.id as article_id'),
             ])
             ->orderByDesc('article_id')
             ->cursorPaginate(self::ARTICLES_PER_PAGE);
-    }
-
-    public function findById(int $id): Builder | Model | null
-    {
-        return $this->article->with('category', 'comments')->newQuery()->find($id);
     }
 
     public function create(ArticleDTO $articleDTO): Model
@@ -51,6 +46,11 @@ class ArticleRepository implements ArticleRepositoryInterface
         }
 
         return $article->fill($articleDTO->jsonSerialize())->save();
+    }
+
+    public function findById(int $id): Builder|Model|null
+    {
+        return $this->article->with('category', 'comments')->newQuery()->find($id);
     }
 
     public function delete(int $id): void

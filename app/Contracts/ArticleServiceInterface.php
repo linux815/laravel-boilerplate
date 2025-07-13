@@ -11,7 +11,7 @@ interface ArticleServiceInterface
 {
     public function getPaginated(): CursorPaginator;
 
-    public function get(int $id): Builder | Model;
+    public function get(int $id): Builder|Model;
 
     public function store(ArticleDTO $articleDTO): void;
 

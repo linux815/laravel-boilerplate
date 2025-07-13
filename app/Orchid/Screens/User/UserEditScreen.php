@@ -8,7 +8,9 @@ use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserPasswordLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -38,7 +40,7 @@ class UserEditScreen extends Screen
         $user->load(['roles']);
 
         return [
-            'user'       => $user,
+            'user' => $user,
             'permission' => $user->getStatusPermission(),
         ];
     }
@@ -49,14 +51,6 @@ class UserEditScreen extends Screen
     public function name(): ?string
     {
         return $this->user->exists ? 'Edit User' : 'Create User';
-    }
-
-    /**
-     * Display header description.
-     */
-    public function description(): ?string
-    {
-        return 'User profile and privileges, including their associated role.';
     }
 
     public function permission(): ?iterable
@@ -82,7 +76,11 @@ class UserEditScreen extends Screen
 
             Button::make(__('Remove'))
                 ->icon('bs.trash3')
-                ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
+                ->confirm(
+                    __(
+                        'Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
+                    ),
+                )
                 ->method('remove')
                 ->canSee($this->user->exists),
 
@@ -107,7 +105,7 @@ class UserEditScreen extends Screen
                         ->type(Color::BASIC)
                         ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
-                        ->method('save')
+                        ->method('save'),
                 ),
 
             Layout::block(UserPasswordLayout::class)
@@ -118,7 +116,7 @@ class UserEditScreen extends Screen
                         ->type(Color::BASIC)
                         ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
-                        ->method('save')
+                        ->method('save'),
                 ),
 
             Layout::block(UserRoleLayout::class)
@@ -129,7 +127,7 @@ class UserEditScreen extends Screen
                         ->type(Color::BASIC)
                         ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
-                        ->method('save')
+                        ->method('save'),
                 ),
 
             Layout::block(RolePermissionLayout::class)
@@ -140,14 +138,22 @@ class UserEditScreen extends Screen
                         ->type(Color::BASIC)
                         ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
-                        ->method('save')
+                        ->method('save'),
                 ),
 
         ];
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * Display header description.
+     */
+    public function description(): ?string
+    {
+        return 'User profile and privileges, including their associated role.';
+    }
+
+    /**
+     * @return RedirectResponse
      */
     public function save(User $user, Request $request)
     {
@@ -159,7 +165,7 @@ class UserEditScreen extends Screen
         ]);
 
         $permissions = collect($request->get('permissions'))
-            ->map(fn ($value, $key) => [base64_decode($key) => $value])
+            ->map(fn($value, $key) => [base64_decode($key) => $value])
             ->collapse()
             ->toArray();
 
@@ -180,9 +186,9 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(User $user)
     {
@@ -194,7 +200,7 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function loginAs(User $user)
     {

@@ -11,7 +11,7 @@ interface CategoryServiceInterface
 {
     public function getPaginated(): CursorPaginator;
 
-    public function get(int $id): Builder | Model;
+    public function get(int $id): Builder|Model;
 
     public function store(CategoryDTO $categoryDTO): void;
 

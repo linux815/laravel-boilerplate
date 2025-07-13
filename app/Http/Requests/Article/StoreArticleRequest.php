@@ -16,7 +16,6 @@ class StoreArticleRequest extends FormRequest
     public function authorize(): bool
     {
         return Gate::allows('create-article', Article::class);
-
     }
 
     /**
@@ -40,7 +39,7 @@ class StoreArticleRequest extends FormRequest
             $this->input('article.title'),
             $this->input('article.content'),
             $this->input('article.user_id'),
-            $this->input('article.category_id')
+            $this->input('article.category_id'),
         );
     }
 }

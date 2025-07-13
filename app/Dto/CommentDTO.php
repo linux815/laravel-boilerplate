@@ -8,7 +8,15 @@ class CommentDTO
         private readonly string $comment,
         private readonly int $userId,
         private readonly int $articleId,
-    ) {
+    ) {}
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'comment' => $this->getComment(),
+            'user_id' => $this->getUserId(),
+            'article_id' => $this->getArticleId(),
+        ];
     }
 
     public function getComment(): string
@@ -24,14 +32,5 @@ class CommentDTO
     public function getArticleId(): int
     {
         return $this->articleId;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'comment' => $this->getComment(),
-            'user_id' => $this->getUserId(),
-            'article_id' => $this->getArticleId(),
-        ];
     }
 }

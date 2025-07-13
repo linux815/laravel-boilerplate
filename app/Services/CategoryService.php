@@ -16,8 +16,7 @@ class CategoryService implements CategoryServiceInterface
     public function __construct(
         private readonly CategoryRepositoryInterface $categoryRepository,
         private readonly ArticleServiceInterface $articleService,
-    ) {
-    }
+    ) {}
 
     public function getPaginated(): CursorPaginator
     {

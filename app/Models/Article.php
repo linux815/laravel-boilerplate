@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Database\Factories\ArticleFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\HttpFilter;
 use Orchid\Screen\AsSource;
 
 /**
@@ -23,29 +26,30 @@ use Orchid\Screen\AsSource;
  * @property string $content
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property string|null $deleted_at
- * @method Builder|Article newQuery()
- * @method static Builder|Article newModelQuery()
- * @method static Builder|Article query()
- * @method static Builder|Article whereCategoryId($value)
- * @method static Builder|Article whereContent($value)
- * @method static Builder|Article whereCreatedAt($value)
- * @method static Builder|Article whereDeletedAt($value)
- * @method static Builder|Article whereId($value)
- * @method static Builder|Article whereTitle($value)
- * @method static Builder|Article whereUserId($value)
- * @property-read \App\Models\Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property Carbon|null $deleted_at
+ * @property-read Category $category
+ * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
- * @property-read \App\Models\User $user
- * @method static Builder|Article defaultSort(string $column, string $direction = 'asc')
- * @method static \Database\Factories\ArticleFactory factory($count = null, $state = [])
- * @method static Builder|Article filters(?mixed $kit = null, ?\Orchid\Filters\HttpFilter $httpFilter = null)
- * @method static Builder|Article filtersApply(iterable $filters = [])
- * @method static Builder|Article filtersApplySelection($class)
- * @method static Builder|Article onlyTrashed()
- * @method static Builder|Article withTrashed()
- * @method static Builder|Article withoutTrashed()
+ * @property-read User $user
+ * @method static Builder<static>|Article defaultSort(string $column, string $direction = 'asc')
+ * @method static ArticleFactory factory($count = null, $state = [])
+ * @method static Builder<static>|Article filters(?mixed $kit = null, ?HttpFilter $httpFilter = null)
+ * @method static Builder<static>|Article filtersApply(iterable $filters = [])
+ * @method static Builder<static>|Article filtersApplySelection($class)
+ * @method static Builder<static>|Article newModelQuery()
+ * @method static Builder<static>|Article newQuery()
+ * @method static Builder<static>|Article onlyTrashed()
+ * @method static Builder<static>|Article query()
+ * @method static Builder<static>|Article whereCategoryId($value)
+ * @method static Builder<static>|Article whereContent($value)
+ * @method static Builder<static>|Article whereCreatedAt($value)
+ * @method static Builder<static>|Article whereDeletedAt($value)
+ * @method static Builder<static>|Article whereId($value)
+ * @method static Builder<static>|Article whereTitle($value)
+ * @method static Builder<static>|Article whereUpdatedAt($value)
+ * @method static Builder<static>|Article whereUserId($value)
+ * @method static Builder<static>|Article withTrashed()
+ * @method static Builder<static>|Article withoutTrashed()
  * @mixin Eloquent
  */
 class Article extends Model

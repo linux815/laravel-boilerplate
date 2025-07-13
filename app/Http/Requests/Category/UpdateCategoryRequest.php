@@ -16,7 +16,6 @@ class UpdateCategoryRequest extends FormRequest
     public function authorize(): bool
     {
         return Gate::allows('update-category', Category::class);
-
     }
 
     /**

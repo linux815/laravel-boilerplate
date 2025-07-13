@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\HttpFilter;
 use Orchid\Screen\AsSource;
 
 /**
@@ -19,22 +20,28 @@ use Orchid\Screen\AsSource;
  * @property int $user_id
  * @property int $article_id
  * @property string $comment
- * @property Carbon $created_at
- * @property string|null $deleted_at
- * @method static Builder|Comment newModelQuery()
- * @method Builder|Comment newQuery()
- * @method static Builder|Comment query()
- * @method static Builder|Comment whereArticleId($value)
- * @method static Builder|Comment whereComment($value)
- * @method static Builder|Comment whereCreatedAt($value)
- * @method static Builder|Comment whereDeletedAt($value)
- * @method static Builder|Comment whereId($value)
- * @method static Builder|Comment whereUserId($value)
- * @property-read \App\Models\Article $article
- * @property-read \App\Models\User $user
- * @method static Builder|Comment onlyTrashed()
- * @method static Builder|Comment withTrashed()
- * @method static Builder|Comment withoutTrashed()
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Article $article
+ * @property-read User $user
+ * @method static Builder<static>|Comment defaultSort(string $column, string $direction = 'asc')
+ * @method static Builder<static>|Comment filters(?mixed $kit = null, ?HttpFilter $httpFilter = null)
+ * @method static Builder<static>|Comment filtersApply(iterable $filters = [])
+ * @method static Builder<static>|Comment filtersApplySelection($class)
+ * @method static Builder<static>|Comment newModelQuery()
+ * @method static Builder<static>|Comment newQuery()
+ * @method static Builder<static>|Comment onlyTrashed()
+ * @method static Builder<static>|Comment query()
+ * @method static Builder<static>|Comment whereArticleId($value)
+ * @method static Builder<static>|Comment whereComment($value)
+ * @method static Builder<static>|Comment whereCreatedAt($value)
+ * @method static Builder<static>|Comment whereDeletedAt($value)
+ * @method static Builder<static>|Comment whereId($value)
+ * @method static Builder<static>|Comment whereUpdatedAt($value)
+ * @method static Builder<static>|Comment whereUserId($value)
+ * @method static Builder<static>|Comment withTrashed()
+ * @method static Builder<static>|Comment withoutTrashed()
  * @mixin Eloquent
  */
 class Comment extends Model
@@ -52,7 +59,7 @@ class Comment extends Model
 
     protected $allowedSorts = [
         'created_at',
-        'update_at'
+        'update_at',
     ];
 
     protected $dates = ['created_at', 'updated_at'];

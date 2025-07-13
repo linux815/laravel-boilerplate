@@ -42,14 +42,6 @@ class UserProfileScreen extends Screen
     }
 
     /**
-     * Display header description.
-     */
-    public function description(): ?string
-    {
-        return 'Update your account details such as name, email address and password';
-    }
-
-    /**
      * The screen's action buttons.
      *
      * @return Action[]
@@ -83,7 +75,7 @@ class UserProfileScreen extends Screen
                     Button::make(__('Save'))
                         ->type(Color::BASIC())
                         ->icon('bs.check-circle')
-                        ->method('save')
+                        ->method('save'),
                 ),
 
             Layout::block(ProfilePasswordLayout::class)
@@ -93,34 +85,25 @@ class UserProfileScreen extends Screen
                     Button::make(__('Update password'))
                         ->type(Color::BASIC())
                         ->icon('bs.check-circle')
-                        ->method('changePassword')
+                        ->method('changePassword'),
                 ),
         ];
     }
 
-    public function save(Request $request): void
+    /**
+     * Display header description.
+     */
+    public function description(): ?string
     {
-        $request->validate([
-            'user.name'  => 'required|string',
-            'user.email' => [
-                'required',
-                Rule::unique(User::class, 'email')->ignore($request->user()),
-            ],
-        ]);
-
-        $request->user()
-            ->fill($request->get('user'))
-            ->save();
-
-        Toast::info(__('Profile updated.'));
+        return 'Update your account details such as name, email address and password';
     }
 
     public function changePassword(Request $request): void
     {
         $guard = config('platform.guard', 'web');
         $request->validate([
-            'old_password' => 'required|current_password:'.$guard,
-            'password'     => 'required|confirmed|different:old_password',
+            'old_password' => 'required|current_password:' . $guard,
+            'password' => 'required|confirmed|different:old_password',
         ]);
 
         tap($request->user(), function ($user) use ($request) {
@@ -128,5 +111,23 @@ class UserProfileScreen extends Screen
         })->save();
 
         Toast::info(__('Password changed.'));
+    }
+
+    public function save(Request $request): void
+    {
+        $request->validate([
+            'user.name' => 'required|string',
+            'user.email' => [
+                'required',
+                Rule::unique(User::class, 'email')->ignore($request->user()),
+            ],
+        ]);
+
+        $request
+            ->user()
+            ->fill($request->get('user'))
+            ->save();
+
+        Toast::info(__('Profile updated.'));
     }
 }

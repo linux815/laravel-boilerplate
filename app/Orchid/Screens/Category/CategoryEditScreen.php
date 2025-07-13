@@ -19,9 +19,7 @@ class CategoryEditScreen extends Screen
 {
     public $category;
 
-    public function __construct(private readonly CategoryServiceInterface $categoryService)
-    {
-    }
+    public function __construct(private readonly CategoryServiceInterface $categoryService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -87,7 +85,7 @@ class CategoryEditScreen extends Screen
                 Input::make('category.name')
                     ->title('Name')
                     ->placeholder('Enter the name of the category'),
-            ])
+            ]),
         ];
     }
 

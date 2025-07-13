@@ -34,7 +34,7 @@ class StoreCommentRequest extends FormRequest
         return new CommentDTO(
             $this->input('comment'),
             auth()->user()->id,
-            $this->input('article_id')
+            $this->input('article_id'),
         );
     }
 }

@@ -9,7 +9,16 @@ class ArticleDTO
         private readonly string $content,
         private readonly int $userId,
         private readonly int $categoryId,
-    ) {
+    ) {}
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'title' => $this->getTitle(),
+            'content' => $this->getContent(),
+            'user_id' => $this->getUserId(),
+            'category_id' => $this->getCategoryId(),
+        ];
     }
 
     public function getTitle(): string
@@ -30,15 +39,5 @@ class ArticleDTO
     public function getCategoryId(): int
     {
         return $this->categoryId;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'title' => $this->getTitle(),
-            'content' => $this->getContent(),
-            'user_id' => $this->getUserId(),
-            'category_id' => $this->getCategoryId(),
-        ];
     }
 }

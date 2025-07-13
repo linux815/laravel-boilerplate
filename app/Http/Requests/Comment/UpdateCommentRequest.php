@@ -37,7 +37,7 @@ class UpdateCommentRequest extends FormRequest
         return new CommentDTO(
             $this->input('comment.comment'),
             $this->input('comment.user_id'),
-            $this->input('comment.article_id')
+            $this->input('comment.article_id'),
         );
     }
 }

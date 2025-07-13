@@ -12,9 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommentService implements CommentServiceInterface
 {
-    public function __construct(private readonly CommentRepositoryInterface $commentRepository)
-    {
-    }
+    public function __construct(private readonly CommentRepositoryInterface $commentRepository) {}
 
     public function getPaginated(): CursorPaginator
     {

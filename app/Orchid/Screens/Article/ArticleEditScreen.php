@@ -24,9 +24,7 @@ class ArticleEditScreen extends Screen
 {
     public $article;
 
-    public function __construct(private readonly ArticleServiceInterface $articleService)
-    {
-    }
+    public function __construct(private readonly ArticleServiceInterface $articleService) {}
 
     /**
      * Fetch data to be displayed on the screen.
@@ -109,7 +107,7 @@ class ArticleEditScreen extends Screen
                 Quill::make('article.content')
                     ->title('Main text'),
 
-            ])
+            ]),
         ];
     }
 
